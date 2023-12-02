@@ -16,13 +16,11 @@ def f1(s):
 	for line in l:
 		game, cubes = line.split(":")
 		_, id = game.split(" ")
-		print(f"id: {id}")
 		valid = True
 		for draw in cubes.split(";"):
 			d = defaultdict(int)
 			for val in draw.split(","):
 				n, col = val.strip().split(" ")
-				print(n, col)
 				d[col] += int(n)
 			if d["red"] > 12 or d["green"] > 13 or d["blue"] > 14:
 				valid = False

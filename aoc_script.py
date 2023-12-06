@@ -55,6 +55,7 @@ direction_4 = [(0,1), (0,-1), (1,0), (-1,0)]
 direction_8 = [(0,1), (0,-1), (1,0), (-1,0), (1,1), (-1,1), (1,-1), (-1,-1)]
 
 rint = lambda x: map(int, re.findall(r"\d+", x))
+lrint = lambda x: list(map(int, re.findall(r"\d+", x)))
 
 def f1(s):
 	return

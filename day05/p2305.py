@@ -52,13 +52,6 @@ def convert_to_dist_improved(l, b):
 		# print(f"transformed: {transformed}")
 	return transformed + l
 
-
-
-	for i in range(len(res)):
-		if res[i] == -1:
-			res[i] = l[i]
-	return res
-
 def f1(s):
 	blocks = s. split("\n\n")
 	seeds = blocks[0].split("\n")[1]
@@ -78,7 +71,6 @@ def f2(s):
 	# print(res)
 	for a in range(1, len(blocks)):
 		res = convert_to_dist_improved(res, blocks[a])
-		print(res)
 	ret = float('inf')
 	for x in res:
 		ret = min(x[0], ret)

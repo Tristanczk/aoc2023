@@ -72,8 +72,9 @@ rint = lambda x: map(int, re.findall(r"\d+", x))
 lrint = lambda x: list(map(int, re.findall(r"\d+", x)))
 
 def f1(s):
-	l = s.split("\n")
+	l = s.split('\\n')
 	for line in l:
+		print(line)
 	return
 
 def f2(s):
@@ -84,7 +85,7 @@ args = parse_arguments()
 exdata = open("ex").read().rstrip()
 indata = open("in").read().rstrip()
 if not indata:
-	indata = __import__("aocd").get_data(day=7, year=2023).strip()
+	indata = __import__("aocd").get_data(day={day}, year={year}).strip()
 	open("in", "w").write(indata)
 
 if not args.p:
@@ -101,7 +102,7 @@ else:
 if args.v:
 	part = input("Submit? (a/b) | ")
 	if part == "a" or part == "b":
-		__import__("aocd").submit(in1 if part == "a" else in2, part=part, day=7, year=2023)
+		__import__("aocd").submit(in1 if part == "a" else in2, part=part, day={day}, year={year})
 """
 )
 

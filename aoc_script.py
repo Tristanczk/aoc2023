@@ -119,7 +119,7 @@ open(script_p2, "w").write(
 	f"""#!/bin/bash
 
 while true; do
-    python3 p{year%100:02}{day:02}.py
+    python3 p{year%100:02}{day:02}.py -p
     sleep 0.1
 done"""
 )

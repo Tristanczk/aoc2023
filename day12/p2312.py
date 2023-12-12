@@ -132,7 +132,8 @@ def f2(s):
 				new_springs += '?'
 				new_vals += ','
 		new_vals = lrint(new_vals)
-		res += dp(new_springs + '.', new_vals)
+		# res += dp(new_springs + '.', new_vals)
+		res += dfs2({},new_springs + '.', new_vals, 0, 0, 0)
 	return res
 
 args = parse_arguments()
@@ -154,7 +155,7 @@ else:
 	if args.v:
 		print("in2:", (in2 := f2(indata)))
 
-if args.v:
-	part = input("Submit? (a/b) | ")
-	if part == "a" or part == "b":
-		__import__("aocd").submit(in1 if part == "a" else in2, part=part, day=12, year=2023)
+# if args.v:
+# 	part = input("Submit? (a/b) | ")
+# 	if part == "a" or part == "b":
+# 		__import__("aocd").submit(in1 if part == "a" else in2, part=part, day=12, year=2023)

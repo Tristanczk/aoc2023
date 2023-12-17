@@ -21,86 +21,36 @@ def parse_arguments():
 rint = lambda x: map(int, re.findall(r"\d+", x))
 lrint = lambda x: list(map(int, re.findall(r"\d+", x)))
 
-def check_equal_column(mat, col1, col2):
-	n = len(mat)
-	count = 0
-	print(col1, col2)
-	for k in range(n):
-		if mat[k][col1] == mat[k][col2]:
-			count += 1
+def transpose(mat):
+	return list(map(list, zip(*mat)))
+
+def solve(s, error_accepted):
+	def solve_horizontal(mat, error_accepted):
+		h, w = len(mat), len(mat[0])
+		for i in range(h - 1):
+			error = 0
+			check = min(i + 1, h - i - 1)
+			for j in range(check):
+				error += len([k for k in range(w) if mat[i - j][k] != mat[i + 1 + j][k]])
+			if error == error_accepted:
+				return i + 1
+		return None
+	l = s.split('\n\n')
+	res = 0
+	for block in l:
+		line = [list(x) for x in block.split("\n")]
+		row = solve_horizontal(line, error_accepted)
+		if row is not None:
+			res += row * 100
 		else:
-			break
-	return count == n
-
-def check_equal_column_error(mat, col1, col2):
-	n = len(mat)
-	count = 0
-	for k in range(n):
-		if mat[k][col1] != mat[k][col2]:
-			count += 1
-	return count
-
+			res += solve_horizontal(transpose(line), error_accepted)
+	return res
 
 def f1(s):
-	l = s.split('\n\n')
-	res = 0
-	for block in l:
-		line = block.split("\n")
-		n, m = len(line), len(line[0])
-		cur = -1
-		for i in range(n - 1):
-			count = 0
-			check = min(i + 1, n - i - 1)
-			for k in range(check):
-				if line[i - k] == line[i + 1 + k]:
-					count += 1
-			if count == check:
-				cur = 100 * (i + 1)
-				break
-		if cur != -1:
-			res += cur
-			continue
-		for j in range(m - 1):
-			count = 0
-			check = min(j + 1, m - j - 1)
-			for k in range(check):
-				if check_equal_column(line, j - k, j + 1 + k):
-					count += 1
-			if count == check:
-				cur = j + 1
-				break
-		res += cur
-	return res
+	return solve(s, 0)
 
 def f2(s):
-	l = s.split('\n\n')
-	res = 0
-	for block in l:
-		line = block.split("\n")
-		n, m = len(line), len(line[0])
-		cur = 0
-		count_reflect = 0
-		for i in range(n - 1):
-			error = 0
-			check = min(i + 1, n - i - 1)
-			for k in range(check):
-				error += len([x for x in range(m) if line[i - k][x] != line[i + 1 + k][x]])
-			if error == 1:
-				cur = 100 * (i + 1)
-				break
-		if cur != 0:
-			res += cur
-			continue
-		for j in range(m - 1):
-			check = min(j + 1, m - j - 1)
-			error = 0
-			for k in range(check):
-				error += check_equal_column_error(line, j - k, j + 1 + k) 
-			if error == 1:
-				cur = j + 1
-				break
-		res += cur
-	return res
+	return solve(s, 1)
 
 args = parse_arguments()
 

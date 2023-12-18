@@ -52,10 +52,10 @@ def f1(s):
 	res += shoelace_formula(r, c)
 	return res // 2 + 1
 
-# try with a matrix that isn't working
+# # try with a matrix that isn't working
 # def f1(s):
 # 	l = s.split('\n')
-# 	h, w = 2000, 2000
+# 	h, w = 1000, 1000
 # 	mat = [['.'] * h for i in range(w)]
 # 	mat[h//2][w//2] = '#'
 # 	cur = [h//2, h//2]
@@ -65,29 +65,27 @@ def f1(s):
 # 		move = direction_4[direc[dir_]]
 # 		dr, dc = move
 # 		for i in range(int(len_)):
+# 			if dir_ == 'U' or dir_ == 'D':
+# 				mat[cur[0]][cur[1]] = dir_
 # 			cur[0] += dr
 # 			cur[1] += dc
-# 			mat[cur[0]][cur[1]] = "#"
+# 			mat[cur[0]][cur[1]] = dir_
 # 	res = 0
+# 	# print(mat)
 # 	for i in range(h):
-# 		j = 0
 # 		inside = False
-# 		possible = 0
-# 		while j < w:
-# 			while j < w and mat[i][j] == '.':
-# 				if inside: 
-# 					possible += 1
-# 				j += 1
-# 			if j == w:
-# 				break
-# 			while j < w and mat[i][j] == '#':
+# 		sense = None
+# 		for j in range(w):
+# 			if mat[i][j] == 'L' or mat[i][j] == 'R':
 # 				res += 1
-# 				j += 1
-# 			if inside:
-# 				res += possible
-# 				possible = 0
-# 			inside = not inside
-# 		# print(res)
+# 			elif mat[i][j] == 'U' or mat[i][j] == 'D':
+# 				res += 1
+# 				if sense is None or mat[i][j] != sense:
+# 					sense = mat[i][j]
+# 					inside = not inside
+# 			else:
+# 				if inside:
+# 					res += 1
 # 	return res
 
 

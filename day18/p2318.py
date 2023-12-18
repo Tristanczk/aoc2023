@@ -47,8 +47,6 @@ def f1(s):
 		r.append(cur[0])
 		c.append(cur[1])
 		res += int(len_)
-	r = [0, 0, 2, 2, 0]
-	c = [0, 2, 2, 0, 0]
 	# we use pick theorem, A is the area, i the number of interior point, b the number of boundary point
 	# A = i + b/2 - 1 -> A + 1 = i + b / 2 -> i + b = A + b / 2 + 1 = shoelace(r,c) / 2 + b / 2 + 1
 	res += shoelace_formula(r, c)

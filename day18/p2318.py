@@ -52,7 +52,6 @@ def f1(s):
 	res += shoelace_formula(r, c)
 	return res // 2 + 1
 
-# # try with a matrix that isn't working
 # def f1(s):
 # 	l = s.split('\n')
 # 	h, w = 1000, 1000
